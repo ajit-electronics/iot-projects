@@ -8,8 +8,9 @@ function startup()
     else
       print("Running")
       file.close("init.lua")
-      dofile("httpserver.lua")
-      dofile("googletime.lua")
+--      dofile("httpserver.lua")
+-- -     dofile("googletime.lua")
+        dofile("led_button.lua")
     end
 end
 
