@@ -3,7 +3,7 @@
 -- Date    : 2016-02-01
 -- Id      : iotbtn.lua
 -- Firmware: nodemcu_float_0.9.6-dev_20150406
--- Found at: 
+-- Found at:
 -- https://www.hackster.io/fablabeu/first-esp8266-and-ifttt-integration
 -- Guido Burger (http://fab-lab.eu/)
 -- Modfied : Claus Kuehnel
@@ -22,7 +22,7 @@ function pincb(level, p)
     print("Button pressed")
     sendMessage(MESSAGE)
   end
-end    
+end
 
 -- set D0 as output
 gpio.mode(LED, gpio.OUTPUT)
@@ -33,10 +33,9 @@ gpio.write(LED, gpio.LOW)
 function sendMessage(msg)
   -- conection to IFTTT channel
   print("Sending data to IFTTT channel")
-  conn=net.createConnection(net.TCP, 0) 
+  conn=net.createConnection(net.TCP, 0)
   conn:on("receive", function(conn, payload) print(payload) end)
-  conn:connect(80,'maker.ifttt.com')  
-  IFTTTKEY="bCtATN5nb2ZsJQlSKsk56k"
+  conn:connect(80,'maker.ifttt.com')
   conn:on("connection", function(conn, payload) 
     print("Connected, sending event")
     conn:send("POST /trigger/btn_pressed/with/key/"..IFTTTKEY
@@ -61,7 +60,7 @@ function read_input(pin)
     if state ~= old_state then
         old_state = state
         print("Input = "..state)
-        if state == 0 then 
+        if state == 0 then
             gpio.write(LED, gpio.HIGH)
             print("----message")
             print(MESSAGE)
@@ -81,4 +80,3 @@ tmr.alarm(0, 1000, 1, function() read_input(IN) end )
 print("IoT Button running...")
 print("If input state changes LED connected to D0 will change too")
 print("Stop this by tmr.stop(0)")
-
