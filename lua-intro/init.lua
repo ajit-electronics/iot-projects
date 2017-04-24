@@ -10,7 +10,8 @@ function startup()
       file.close("init.lua")
 --      dofile("httpserver.lua")
 -- -     dofile("googletime.lua")
-        dofile("led_button.lua")
+        --dofile("led_button.lua")
+        dofile("mqtt.lua")
     end
 end
 
